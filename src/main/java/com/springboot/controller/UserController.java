@@ -42,7 +42,6 @@ public class UserController {
 		return user;
 	}
 	
-	
 	@RequestMapping("/deleteByid/{id}")
 	@ResponseBody
 	public int deleteByid(@PathVariable("id")Integer id){
