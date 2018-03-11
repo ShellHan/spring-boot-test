@@ -2,6 +2,10 @@ package com.springboot.controller;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +17,8 @@ import com.springboot.service.UserService;
 
 @RestController
 public class UserController {
+	
+	private static final  Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userService;
@@ -30,10 +36,9 @@ public class UserController {
 	
 	@RequestMapping(value="/queryByEmail")
 	@ResponseBody
-	public User queryByEmail(String email){
-		System.out.println(email);
+	public User queryByEmail(@PathParam("email") String email){
 		User user = userService.queryByEmail(email);
-		System.out.println(user);
+		LOGGER.debug("调用  userService.queryByEmail 返回结果，email{}", email); 
 		return user;
 	}
 	
