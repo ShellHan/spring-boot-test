@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springboot.common.annoation.ServiceCache;
 import com.springboot.pojo.User;
 import com.springboot.repository.UserRepository;
 
@@ -18,6 +19,7 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@ServiceCache()
 	public List<User> getAll(){
 		
 		List<User> findAll = userRepository.findAll();
