@@ -19,7 +19,7 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@ServiceCache()
+	
 	public List<User> getAll(){
 		
 		List<User> findAll = userRepository.findAll();
@@ -28,9 +28,10 @@ public class UserService {
 	}
 	
 	public void deleteByid(int id){
-		userRepository.delete(id);;
+		userRepository.delete(id);
 	}
 	
+	@ServiceCache(keyName = "User_email_#{#email}", cacheTime = 259201)
 	public User queryByEmail(String email){
 		return userRepository.getByEmail(email);
 	}
