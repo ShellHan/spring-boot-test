@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -29,7 +30,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 */
 
 @Configuration
-@EnableCaching // 启用缓存，这个注解很重要；
 public class RedisCacheConfig extends CachingConfigurerSupport {
 	
 	/**
@@ -77,7 +77,7 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
      * @param factory
      * @return
      */
-    @Bean("redisTemplate")
+    @Bean
     public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
          StringRedisTemplate template = new StringRedisTemplate(factory);
          Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
