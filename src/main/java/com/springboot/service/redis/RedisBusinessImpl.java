@@ -28,7 +28,6 @@ public class RedisBusinessImpl implements RedisBusiness {
 	
 	@Autowired
 	private RedisTemplate<String,String> redisClientTemplate;
-
 	
 	/**
 	 * 获取redis值

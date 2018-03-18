@@ -1,9 +1,6 @@
 package com.springboot.interceptor;
 
 import java.lang.reflect.Method;
-import java.util.List;
-
-import javax.annotation.Resource;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
