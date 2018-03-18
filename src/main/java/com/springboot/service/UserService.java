@@ -23,7 +23,7 @@ public class UserService {
 	private UserRepository userRepository;
 	
 	
-	public List<User> getAll(){		
+	public ResultDTO getAll(){		
 		List<User> findAll = userRepository.findAll();
 		ResultDTO resultDTO = new ResultDTO();
 		resultDTO.setData(JSON.toJSONString(findAll));
