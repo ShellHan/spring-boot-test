@@ -7,7 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.springboot.common.annoation.ServiceCache;
+import com.springboot.common.constants.ResultDTO;
 import com.springboot.pojo.User;
 import com.springboot.repository.UserRepository;
 
@@ -19,12 +22,16 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@ServiceCache()
-	public List<User> getAll(){
+	@ServiceCache(keyName="getUser_All")
+	public ResultDTO getAll(){
 		
 		List<User> findAll = userRepository.findAll();
-		
-		return findAll;
+		ResultDTO resultDTO = new ResultDTO();
+		resultDTO.setData(JSON.toJSONString(findAll));
+		resultDTO.setErrorCode("00000000");
+		resultDTO.setStatus("400");
+		resultDTO.setMsg("success");
+		return resultDTO;
 	}
 	
 	public void deleteByid(int id){

@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.han</groupId>
-  <artifactId>spring-boot</artifactId>
+  <artifactId>spring-boot-jpa-redis</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
@@ -15,6 +15,7 @@
  <!-- 指定一下jdk的版本 ，这里我们使用jdk 1.8 ,默认是1.6 -->
    <properties>
    	 <java.version>1.8</java.version>
+   	 <dubbo-spring-boot>1.0.0</dubbo-spring-boot>
    </properties>
   
   <dependencies>
@@ -78,6 +79,24 @@
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
       <version>1.2.15</version>
+    </dependency>
+	
+	<!-- 测试 -->
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-test</artifactId>
+	</dependency>
+	
+	<dependency>  
+        <groupId>org.projectlombok</groupId>  
+        <artifactId>lombok</artifactId>  
+    </dependency>  
+    
+    <!-- Spring Boot Dubbo 依赖 -->
+    <dependency>
+        <groupId>io.dubbo.springboot</groupId>
+        <artifactId>spring-boot-starter-dubbo</artifactId>
+        <version>${dubbo-spring-boot}</version>
     </dependency>
 
   </dependencies>

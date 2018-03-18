@@ -2,17 +2,15 @@ package com.springboot.service.redis;
 
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Resource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.springboot.common.constants.SystemConstants;
 import com.springboot.common.utils.DateKit;
@@ -23,12 +21,12 @@ import com.springboot.common.utils.DateKit;
 * @date 创建时间：2018年3月12日
 * @version 1.0 
 */
-@Component(value="redisBusiness")
+@Service
 public class RedisBusinessImpl implements RedisBusiness {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	@Resource
+	@Autowired
 	private RedisTemplate<String,String> redisClientTemplate;
 
 	
@@ -52,11 +50,10 @@ public class RedisBusinessImpl implements RedisBusiness {
 	* @parameter  
 	* @return 成功返回1 如果存在 和 发生异常 返回 0
 	 */
-	public int lock(String key) {
+	public int lock(final String key) {
 		logger.info("进入lock：key:{}", key);
 		int flag = 0 ;
 		if (redisClientTemplate.execute(new RedisCallback<Boolean>() {
-
             @Override
             public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
                 JdkSerializationRedisSerializer jdkSerializer = new JdkSerializationRedisSerializer();
@@ -170,7 +167,7 @@ public class RedisBusinessImpl implements RedisBusiness {
 	public void setValue(String key, String msg, int time) {
 		redisClientTemplate.opsForValue().set(key, msg);
 		if (time != 0)
-			redisClientTemplate.expire(key, time, null);
+			redisClientTemplate.expire(key, time, TimeUnit.MILLISECONDS);
 	}
 
 	

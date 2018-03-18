@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springboot.common.constants.ResultDTO;
 import com.springboot.pojo.User;
 import com.springboot.service.UserService;
 
@@ -30,7 +31,7 @@ public class UserController {
 	
 	@RequestMapping("/listAll")
 	@ResponseBody
-	public List<User> getAll(){
+	public ResultDTO getAll(){
 		return userService.getAll();
 	}
 	
