@@ -1,8 +1,5 @@
 package com.springboot.config;
 
-import com.mobanker.feature.provider.business.feature.FeatureBuild;
-import com.mobanker.feature.provider.common.utils.SpringContextsUtil;
-
 /**
  * Copyright @ 2017QIANLONG.
  * All right reserved.
